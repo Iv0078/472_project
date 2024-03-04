@@ -17,11 +17,16 @@ import random
 # uncomit the type of data you want to analyze
 # commit the other one
 
-data = "data/test/"
-#data = "data/train/"
+#data = "data/test/"
+data = "data/train/"
 
-data_array = ["angry/test_angry_","surprise/test_suprise_","neutral/test_neutral_"]
-#data_array = ["angry/train_angry_","surprise/train_suprise_","neutral/train_neutral_"]
+#data_array = ["angry/test_angry_","surprise/test_suprise_","neutral/test_neutral_"]
+data_array = ["angry/training_angry_","surprise/training_suprise_","neutral/training_neutral_"]
+
+
+#controls the range of the random numbers generated
+# for best results set it to 730 for the test data and max up to 3000 for the train data
+range_upper_limit = 3000
 
 
 # matrix with 3 rows and 25 colums
@@ -32,7 +37,7 @@ arr_index = 0
 for j in data_array:
     num_location = 0
     while num_location < 25:
-        img_name =  data + j + str(random.randint(1, 730)) +".jpg"
+        img_name =  data + j + str(random.randint(1, range_upper_limit)) +".jpg"
         #checks if image exists 
         if os.path.exists(img_name):
            # print(img_name)
@@ -41,9 +46,11 @@ for j in data_array:
     arr_index = arr_index+1
 
 
+
 fig_num = 1
 arr_grid_num = 0
 #loop through the matrix for each array of images
+#creating a  5x5 grid followed by each images histogram
 for i in data_array:
     fig = plt.figure(fig_num,figsize=(4., 4.))
     grid = ImageGrid(fig, 111,  
