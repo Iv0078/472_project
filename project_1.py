@@ -17,11 +17,11 @@ import skimage as ski
 # uncomit the type of data you want to analyze
 # commit the other one
 
-#data = "data/test/"
-data = "data/train/"
+data = "data/test/"
+#data = "data/train/"
 
-#data_array = ["angry/test_angry_","surprise/test_suprise_","neutral/test_neutral_"]
-data_array = ["angry/training_angry_","surprise/training_suprise_","neutral/training_neutral_"]
+data_array = ["angry/test_angry_","surprise/test_suprise_","neutral/test_neutral_","sad/test_sad_","fear/test_fear_"]
+#data_array = ["angry/training_angry_","surprise/training_suprise_","neutral/training_neutral_","sad/train_sad_","fear/train_fear_"]
 
 
 #controls the range of the random numbers generated
@@ -29,8 +29,8 @@ data_array = ["angry/training_angry_","surprise/training_suprise_","neutral/trai
 range_upper_limit = 3000
 
 
-# matrix with 3 rows and 25 colums
-img_array = q = [ [ None for l in range(25) ] for m in range(3) ]
+# matrix with 5 rows each 25 colums
+img_array = q = [ [ None for l in range(25) ] for m in range(5) ]
 
 #index for array row
 arr_index = 0
@@ -72,8 +72,10 @@ for i in data_array:
         ax.set_xlabel(label_name)
         
     for current_img in img_array[arr_grid_num]:
+        #converts image to point format
         float_img = ski.util.img_as_float(current_img)
         fig_num = fig_num+1
+        #displays image
         histogram, bin_edges = np.histogram(float_img, bins=256, range=(0, 1))
         plt.figure()
         plt.title("Grayscale Histogram")
